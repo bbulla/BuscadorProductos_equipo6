@@ -1,150 +1,43 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Bulma!</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
-</head>
-
-<body>
-  <div class="container">
-    <section class="section">
-      <h1 class="title" id="titulo"> Humildify 🛒💨 </h1>
-      <input class="input is-info busqueda" type="text"
-        placeholder="Buscá tu producto... (Probablemente no lo tengamos)" />
-    </section>
-    <section class="section">
-      <div class="fixed-grid has-4-cols-desktop has-3-cols-tablet has-2-cols-mobile">
-        <div class="grid is-gap-7">
-          <div class="cell">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Camiseta del Paris Saint Germain</p>
-                    <p class="subtitle is-4">$700</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  Esta es la impresionante camiseta del Paris Saint Germain, utilizada por el
-                  mismisimo Joaco de Piedras Blancas©
-                  <br />
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          <div class="cell">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Camiseta del Paris Saint Germain</p>
-                    <p class="subtitle is-4">$700</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  Esta es la impresionante camiseta del Paris Saint Germain, utilizada por el
-                  mismisimo Joaco de Piedras Blancas©
-                  <br />
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          <div class="cell">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Camiseta del Paris Saint Germain</p>
-                    <p class="subtitle is-4">$700</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  Esta es la impresionante camiseta del Paris Saint Germain, utilizada por el
-                  mismisimo Joaco de Piedras Blancas©
-                  <br />
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          <div class="cell">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Camiseta del Paris Saint Germain</p>
-                    <p class="subtitle is-4">$700</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  Esta es la impresionante camiseta del Paris Saint Germain, utilizada por el
-                  mismisimo Joaco de Piedras Blancas©
-                  <br />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image" />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Camiseta del Paris Saint Germain</p>
-                    <p class="subtitle is-4">$700</p>
-                  </div>
-                </div>
-
-                <div class="content">
-                  Esta es la impresionante camiseta del Paris Saint Germain, utilizada por el
-                  mismisimo Joaco de Piedras Blancas©
-                  <br />
-                </div>
-              </div>
-            </div>
-            
+  <body>
+    <div class="container">
+      <section class="section">
+        <h1 class="title" id="titulo">Humildify 🛒💨</h1>
+        <div class="level">
+          <div class="field has-addons">
+            <p class="control">
+              <input
+                class="input is-info busqueda"
+                type="text"
+                placeholder="Buscá tu producto... (Probablemente no lo tengamos)"
+              />
+            </p>
+            <p class="control">
+              <button class="button" id="searchButton">Buscar</button>
+            </p>
           </div>
         </div>
-
-      </div>
-
-    </section>
-  </div>
-</body>
-
+      </section>
+      <section class="section">
+        <div
+          class="fixed-grid has-2-cols-mobile has-3-cols-tablet has-4-cols-desktop"
+        >
+          <div class="grid is-gap-7" id="productos"></div>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>

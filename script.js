@@ -7,7 +7,11 @@ document.getElementById("searchButton").addEventListener("click", () => {
   renderProducts(filteredProducts);
 });
 
-const cardsContainer = document.getElementById("container");
+const cardsContainer = document.getElementById("productos");
+
+window.onload = () => {
+  renderProducts(products);
+};
 
 const products = [
   {
@@ -109,28 +113,28 @@ const renderProducts = (products) => {
 
 const renderCard = (product) => {
   const card = `
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img
-                src="${product.image}"
-                alt="${product.name}"
-              />
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4">${product.name}</p>
-                <p class="subtitle is-4">$${product.price}</p>
+        <div class="cell">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="${product.image}" alt="${product.name}" />
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">${product.name}</p>
+                  <p class="subtitle is-4">${product.price}</p>
+                </div>
+              </div>
+
+              <div class="content">
+                ${product.description}
+                <br />
               </div>
             </div>
-            <div class="content">
-                ${product.description}
-              <br />
-            </div>
           </div>
-        </div>;
+        </div>
     `;
 
   return card;
