@@ -1,6 +1,6 @@
 const searchInput = document.getElementById("searchInput");
 
-document.getElementById("searchButton").addEventListener("input", () => {
+document.getElementById("searchButton").addEventListener("click", () => {
   const text = searchInput.value;
   const filteredProducts = filterProducts(text);
 
