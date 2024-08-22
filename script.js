@@ -106,7 +106,16 @@ const filterProducts = (searchText) => {
   return filteredProducts;
 };
 
+const emptyState = `<div class="notification has-text-centered">
+          <p class="title is-4">No se encontraron productos</p>
+        </div>`;
+
 const renderProducts = (products) => {
+  if (products.length === 0) {
+    cardsContainer.innerHTML = emptyState;
+    return;
+  }
+
   const renderedProducts = products.map((product) => renderCard(product));
 
   const renderedProductsStrings = renderedProducts.reduce(
