@@ -2,6 +2,7 @@ const searchInput = document.getElementById("searchInput");
 
 document.getElementById("searchButton").addEventListener("click", () => {
   const text = searchInput.value;
+
   const filteredProducts = filterProducts(text);
 
   renderProducts(filteredProducts);
@@ -108,7 +109,12 @@ const filterProducts = (searchText) => {
 const renderProducts = (products) => {
   const renderedProducts = products.map((product) => renderCard(product));
 
-  cardsContainer.innerHTML = renderedProducts;
+  const renderedProductsStrings = renderedProducts.reduce(
+    (acc, product) => acc + product,
+    ""
+  );
+
+  cardsContainer.innerHTML = renderedProductsStrings;
 };
 
 const renderCard = (product) => {
@@ -127,15 +133,13 @@ const renderCard = (product) => {
                   <p class="subtitle is-4">${product.price}</p>
                 </div>
               </div>
-
               <div class="content">
                 ${product.description}
                 <br />
               </div>
             </div>
           </div>
-        </div>
-    `;
+        </div>`;
 
   return card;
 };
