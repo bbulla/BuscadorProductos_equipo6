@@ -152,3 +152,37 @@ const renderCard = (product) => {
 
   return card;
 };
+
+const dropdown = document.getElementById('dropdown');
+const dropdownMenu = document.getElementById('dropdown-menu');
+const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+dropdown.addEventListener('click', () => {
+  dropdown.classList.toggle('is-active');
+});
+
+dropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    event.preventDefault();
+    const sortType = item.getAttribute('data-sort');
+    sortProducts(sortType);
+  });
+});
+
+const sortProducts = (type) => {
+  let sortedProducts;
+
+  switch (type) {
+    case 'price-asc':
+      sortedProducts = [...products].sort((a, b) => a.price - b.price);
+      break;
+    case 'price-desc':
+      sortedProducts = [...products].sort((a, b) => b.price - a.price);
+      break;
+    default:
+      sortedProducts = [...products];
+  }
+
+  renderProducts(sortedProducts);
+};
+
