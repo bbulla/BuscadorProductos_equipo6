@@ -126,7 +126,24 @@
         <div
           class="fixed-grid has-2-cols-mobile has-3-cols-tablet has-4-cols-desktop"
         >
-          <div class="grid is-gap-7" id="productos"></div>
+          <div class="grid is-gap-7" id="productos">
+            <!-- Ejemplo de un producto -->
+            <div class="box product" draggable="true" data-product-id="1">
+              <p>Producto 1</p>
+            </div>
+            <div class="box product" draggable="true" data-product-id="2">
+              <p>Producto 2</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Área del Carrito de Compras -->
+      <section class="section">
+        <h2 class="title">Carrito de Compras</h2>
+        <div class="box" id="carrito" ondragover="allowDrop(event)" ondrop="drop(event)">
+          <p>Arrastra los productos aquí</p>
+          <ul id="listaCarrito"></ul>
         </div>
       </section>
     </div>

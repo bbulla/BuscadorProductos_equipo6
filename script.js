@@ -1,231 +1,101 @@
 const searchInput = document.getElementById("searchInput");
-
-document.getElementById("searchButton").addEventListener("click", () => {
-  const text = searchInput.value;
-
-  const filteredProducts = filterProducts(text);
-
-  renderProducts(filteredProducts);
-});
-
 const cardsContainer = document.getElementById("productos");
+const carrito = document.getElementById("listaCarrito");
+const products = [
+  // ... (lista de productos)
+];
 
 window.onload = () => {
   renderProducts(products);
 };
 
-const products = [
-  {
-    name: "Wireless Mouse",
-    description: "Ergonomic wireless mouse with adjustable DPI.",
-    price: 29.99,
-    image: "https://via.placeholder.com/150?text=Wireless+Mouse",
-    category: "Accessories",
-  },
-  {
-    name: "Mechanical Keyboard",
-    description: "RGB backlit mechanical keyboard with Cherry MX switches.",
-    price: 89.99,
-    image: "https://via.placeholder.com/150?text=Mechanical+Keyboard",
-    category: "Peripherals",
-  },
-  {
-    name: "Gaming Headset",
-    description:
-      "Surround sound gaming headset with noise-cancelling microphone.",
-    price: 59.99,
-    image: "https://via.placeholder.com/150?text=Gaming+Headset",
-    category: "Audio",
-  },
-  {
-    name: "27-inch Monitor",
-    description: "4K UHD monitor with IPS display and 144Hz refresh rate.",
-    price: 329.99,
-    image: "https://via.placeholder.com/150?text=27-inch+Monitor",
-    category: "Displays",
-  },
-  {
-    name: "Laptop Stand",
-    description: "Adjustable aluminum laptop stand for ergonomic work setup.",
-    price: 39.99,
-    image: "https://via.placeholder.com/150?text=Laptop+Stand",
-    category: "Accessories",
-  },
-  {
-    name: "USB-C Hub",
-    description: "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
-    price: 24.99,
-    image: "https://via.placeholder.com/150?text=USB-C+Hub",
-    category: "Peripherals",
-  },
-  {
-    name: "External SSD",
-    description:
-      "Portable external SSD with 1TB storage and USB 3.1 interface.",
-    price: 129.99,
-    image: "https://via.placeholder.com/150?text=External+SSD",
-    category: "Storage",
-  },
-  {
-    name: "Smartphone Stand",
-    description: "Adjustable smartphone stand with 360-degree rotation.",
-    price: 19.99,
-    image: "https://via.placeholder.com/150?text=Smartphone+Stand",
-    category: "Accessories",
-  },
-  {
-    name: "Bluetooth Speaker",
-    description: "Portable Bluetooth speaker with 10-hour battery life.",
-    price: 49.99,
-    image: "https://via.placeholder.com/150?text=Bluetooth+Speaker",
-    category: "Audio",
-  },
-  {
-    name: "Webcam",
-    description: "1080p HD webcam with built-in microphone and privacy cover.",
-    price: 34.99,
-    image: "https://via.placeholder.com/150?text=Webcam",
-    category: "Peripherals",
-  },
-  {
-    name: "Wireless Charger",
-    description: "Fast wireless charger with Qi compatibility.",
-    price: 25.99,
-    image: "https://via.placeholder.com/150?text=Wireless+Charger",
-    category: "Accessories",
-  },
-  {
-    name: "Noise-Cancelling Headphones",
-    description:
-      "Over-ear noise-cancelling headphones with Bluetooth connectivity.",
-    price: 199.99,
-    image: "https://via.placeholder.com/150?text=Noise-Cancelling+Headphones",
-    category: "Audio",
-  },
-  {
-    name: "Smartwatch",
-    description: "Smartwatch with heart rate monitor and GPS.",
-    price: 149.99,
-    image: "https://via.placeholder.com/150?text=Smartwatch",
-    category: "Wearables",
-  },
-];
+document.getElementById("searchButton").addEventListener("click", () => {
+  const text = searchInput.value.toLowerCase();
+  const filteredProducts = products.filter(product => product.name.toLowerCase().includes(text));
+  renderProducts(filteredProducts);
+});
 
-const filterProducts = (searchText) => {
-  const filteredProducts = products.filter((product) => {
-    return product.name.toLowerCase().includes(searchText.toLowerCase());
+document.getElementById("dropdown").addEventListener("click", () => {
+  document.getElementById("dropdown").classList.toggle("is-active");
+});
+
+document.querySelectorAll(".dropdown-item").forEach(item => {
+  item.addEventListener("click", event => {
+    event.preventDefault();
+    const sortType = item.getAttribute("data-sort");
+    let sortedProducts = [...products];
+    if (sortType === "price-asc") sortedProducts.sort((a, b) => a.price - b.price);
+    else if (sortType === "price-desc") sortedProducts.sort((a, b) => b.price - a.price);
+    renderProducts(sortedProducts);
   });
+});
 
-  return filteredProducts;
-};
+document.getElementById("dropdown-categoria").addEventListener("click", () => {
+  document.getElementById("dropdown-categoria").classList.toggle("is-active");
+});
 
-const emptyState = `<div class="notification has-text-centered">
-          <p class="title is-4">No se encontraron productos</p>
-        </div>`;
+document.querySelectorAll(".item-categoria").forEach(item => {
+  item.addEventListener("click", event => {
+    event.preventDefault();
+    const category = item.getAttribute("data-sort");
+    const filteredProducts = category === "todas" ? products : products.filter(product => product.category === category);
+    renderProducts(filteredProducts);
+  });
+});
 
-const renderProducts = (products) => {
-  if (products.length === 0) {
-    cardsContainer.innerHTML = emptyState;
-    return;
-  }
+function renderProducts(products) {
+  cardsContainer.innerHTML = products.length === 0
+    ? `<div class="notification has-text-centered"><p class="title is-4">No se encontraron productos</p></div>`
+    : products.map(product => renderCard(product)).join("");
+  attachDragEvents();
+}
 
-  const renderedProducts = products.map((product) => renderCard(product));
-
-  const renderedProductsStrings = renderedProducts.reduce(
-    (acc, product) => acc + product,
-    ""
-  );
-
-  cardsContainer.innerHTML = renderedProductsStrings;
-};
-
-const renderCard = (product) => {
-  const card = `
-        <div class="cell">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="${product.image}" alt="${product.name}" />
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">${product.name}</p>
-                  <p class="subtitle is-4">${product.price}</p>
-                </div>
-              </div>
-              <div class="content">
-                ${product.description}
-                <br />
-              </div>
+function renderCard(product) {
+  return `
+    <div class="cell product" draggable="true" data-product-id="${product.name}">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="${product.image}" alt="${product.name}" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">${product.name}</p>
+              <p class="subtitle is-4">${product.price}</p>
             </div>
           </div>
-        </div>`;
+          <div class="content">${product.description}</div>
+        </div>
+      </div>
+    </div>`;
+}
 
-  return card;
-};
-
-const dropdown = document.getElementById("dropdown");
-const dropdownMenu = document.getElementById("dropdown-menu");
-const dropdownItems = document.querySelectorAll(".dropdown-item");
-
-dropdown.addEventListener("click", () => {
-  dropdown.classList.toggle("is-active");
-});
-
-dropdownItems.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const sortType = item.getAttribute("data-sort");
-    sortProducts(sortType);
+function attachDragEvents() {
+  document.querySelectorAll(".product").forEach(product => {
+    product.addEventListener("dragstart", drag);
   });
-});
+}
 
-const sortProducts = (type) => {
-  let sortedProducts;
+function drag(event) {
+  event.dataTransfer.setData("text", event.target.dataset.productId);
+}
 
-  switch (type) {
-    case "price-asc":
-      sortedProducts = [...products].sort((a, b) => a.price - b.price);
-      break;
-    case "price-desc":
-      sortedProducts = [...products].sort((a, b) => b.price - a.price);
-      break;
-    default:
-      sortedProducts = [...products];
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function drop(event) {
+  event.preventDefault();
+  const productId = event.dataTransfer.getData("text");
+  const product = products.find(p => p.name === productId);
+  if (product) {
+    const item = document.createElement("li");
+    item.textContent = product.name;
+    carrito.appendChild(item);
   }
+}
 
-  renderProducts(sortedProducts);
-};
-
-const dropdownCategoria = document.getElementById("dropdown-categoria");
-const dropdownMenuCategoria = document.getElementById(
-  "dropdown-menu-categoria"
-);
-const dropdownItemsCategorias = document.querySelectorAll(".item-categoria");
-
-dropdown.addEventListener("click", () => {
-  dropdownCategoria.classList.toggle("is-active");
-});
-
-dropdownItemsCategorias.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const sortType = item.getAttribute("data-sort");
-    filterProductsByCategory(sortType);
-  });
-});
-
-const filterProductsByCategory = (category) => {
-  if (category === "todas") {
-    renderProducts(products);
-    return;
-  } else {
-    const filteredProducts = products.filter((product) => {
-      return product.category === category;
-    });
-
-    renderProducts(filteredProducts);
-  }
-};
+document.getElementById("carrito").addEventListener("dragover", allowDrop);
+document.getElementById("carrito").addEventListener("drop", drop);
