@@ -8,6 +8,16 @@ document.getElementById("searchButton").addEventListener("click", () => {
   renderProducts(filteredProducts);
 });
 
+searchInput.addEventListener("input", (event) => {
+  const text = searchInput.value;
+
+  const filteredProducts = filterProducts(text);
+
+  renderProducts(filteredProducts);
+
+});
+
+
 const cardsContainer = document.getElementById("productos");
 
 window.onload = () => {

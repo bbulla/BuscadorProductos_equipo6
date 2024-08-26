@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Bulma!</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="script.js"></script>
-  </head>
 
-  <body>
-    <div class="container">
-      <section class="section">
-        <h1 class="title" id="titulo">Humildify 🛒💨</h1>
-        <div class="level">
-          <div class="field has-addons">
-            <p class="control">
-              <input
-                class="input is-info busqueda"
-                type="text"
-                placeholder="Buscá tu producto..."
-                id="searchInput"
-              />
-            </p>
-            <p class="control">
-              <button class="button" id="searchButton">Buscar</button>
-            </p>
-          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <section class="section">
+      <h1 class="title is-flex is-justify-content-center" id="titulo">Humildify 🛒💨</h1>
+      <div class="level is-flex is-justify-content-center">
+        <div class="field has-addons">
+          <p class="control">
+            <input class="input busqueda" type="text" placeholder="Busca productos" id="searchInput" />
+          </p>
+          <p class="control">
+            <button class="button pr-4" id="searchButton">Buscar</button>
+          </p>
         </div>
-      </section>
+      </div>
+    </section>
 
+    <section class="section py-0">
       <div class="dropdown" id="dropdown">
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span>Ordenar por</span>
-            <span class="icon is-small">
-              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                <path
+                  d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
+              </svg>
             </span>
+            <span>Ordenar por</span>
           </button>
         </div>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
@@ -50,15 +48,14 @@
           </div>
         </div>
       </div>
+    </section>
 
-      
-      <section class="section">
-        <div
-          class="fixed-grid has-2-cols-mobile has-3-cols-tablet has-4-cols-desktop"
-        >
-          <div class="grid is-gap-7" id="productos"></div>
-        </div>
-      </section>
-    </div>
-  </body>
+    <section class="section pt-3">
+      <div class="fixed-grid has-2-cols-mobile has-3-cols-tablet has-4-cols-desktop">
+        <div class="grid is-gap-7" id="productos"></div>
+      </div>
+    </section>
+  </div>
+</body>
+
 </html>
