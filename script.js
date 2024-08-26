@@ -205,7 +205,7 @@ const dropdownMenuCategoria = document.getElementById(
 );
 const dropdownItemsCategorias = document.querySelectorAll(".item-categoria");
 
-dropdown.addEventListener("click", () => {
+dropdownCategoria.addEventListener("click", () => {
   dropdownCategoria.classList.toggle("is-active");
 });
 
