@@ -199,36 +199,5 @@ function drop(event) {
   }
 }
 
-const dropdownCategoria = document.getElementById("dropdown-categoria");
-const dropdownMenuCategoria = document.getElementById(
-  "dropdown-menu-categoria"
-);
-const dropdownItemsCategorias = document.querySelectorAll(".item-categoria");
-
-dropdownCategoria.addEventListener("click", () => {
-  dropdownCategoria.classList.toggle("is-active");
-});
-
-dropdownItemsCategorias.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const sortType = item.getAttribute("data-sort");
-    filterProductsByCategory(sortType);
-  });
-});
-
-const filterProductsByCategory = (category) => {
-  if (category === "todas") {
-    renderProducts(products);
-    return;
-  } else {
-    const filteredProducts = products.filter((product) => {
-      return product.category === category;
-    });
-
-    renderProducts(filteredProducts);
-  }
-};
-
 document.getElementById("carrito").addEventListener("dragover", allowDrop);
 document.getElementById("carrito").addEventListener("drop", drop);
