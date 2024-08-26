@@ -1,61 +1,151 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hello Bulma!</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
-</head>
-
-<body>
-  <div class="container">
-    <section class="section">
-      <h1 class="title is-flex is-justify-content-center" id="titulo">Humildify 🛒💨</h1>
-      <div class="level is-flex is-justify-content-center">
-        <div class="field has-addons">
-          <p class="control">
-            <input class="input busqueda" type="text" placeholder="Busca productos" id="searchInput" />
-          </p>
-          <p class="control">
-            <button class="button pr-4" id="searchButton">Buscar</button>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section py-0">
-      <div class="dropdown" id="dropdown">
-        <div class="dropdown-trigger">
-          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-funnel-fill" viewBox="0 0 16 16">
-                <path
-                  d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
-              </svg>
-            </span>
-            <span>Ordenar por</span>
-          </button>
-        </div>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-          <div class="dropdown-content">
-            <a href="#" class="dropdown-item" data-sort="default">Default</a>
-            <a href="#" class="dropdown-item" data-sort="price-asc">Precio: menor a mayor</a>
-            <a href="#" class="dropdown-item" data-sort="price-desc">Precio: mayor a menor</a>
+  <body>
+    <div class="container">
+      <section class="section">
+        <h1 class="title is-flex is-justify-content-center" id="titulo">
+          Humildify 🛒💨
+        </h1>
+        <div class="level is-flex is-justify-content-center">
+          <div class="field has-addons">
+            <p class="control">
+              <input
+                class="input busqueda"
+                type="text"
+                placeholder="Busca productos"
+                id="searchInput"
+              />
+            </p>
+            <p class="control">
+              <button class="button pr-4" id="searchButton">Buscar</button>
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section pt-3">
-      <div class="fixed-grid has-2-cols-mobile has-3-cols-tablet has-4-cols-desktop">
-        <div class="grid is-gap-7" id="productos"></div>
-      </div>
-    </section>
-  </div>
-</body>
+      <section class="section py-0">
+        <div class="dropdown" id="dropdown">
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu"
+            >
+              <span class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-funnel-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"
+                  />
+                </svg>
+              </span>
+              <span>Ordenar por</span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item" data-sort="default">Default</a>
+              <a href="#" class="dropdown-item" data-sort="price-asc"
+                >Precio: menor a mayor</a
+              >
+              <a href="#" class="dropdown-item" data-sort="price-desc"
+                >Precio: mayor a menor</a
+              >
+            </div>
+          </div>
+        </div>
 
+        <div class="dropdown" id="dropdown-categoria">
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu-categoria"
+            >
+              <span>categoria</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div
+            class="dropdown-menu-categoria"
+            id="dropdown-menu-categoria"
+            role="menu"
+          >
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item item-categoria" data-sort="todas"
+                >todas</a
+              >
+              <a
+                href="#"
+                class="dropdown-item item-categoria"
+                data-sort="Accessories"
+                >Accessories</a
+              >
+              <a
+                href="#"
+                class="dropdown-item item-categoria"
+                data-sort="Peripherals"
+                >Peripherals</a
+              >
+              <a href="#" class="dropdown-item item-categoria" data-sort="Audio"
+                >Audio</a
+              >
+
+              <a
+                href="#"
+                class="dropdown-item item-categoria"
+                data-sort="Displays"
+                >Displays</a
+              >
+              <a
+                href="#"
+                class="dropdown-item item-categoria"
+                data-sort="Displays"
+                >Displays</a
+              >
+              <a
+                href="#"
+                class="dropdown-item item-categoria"
+                data-sort="Storage"
+                >Storage</a
+              >
+              <a
+                href="#"
+                class="dropdown-item item-categoria"
+                data-sort="Wearables"
+                >Wearables</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section pt-3">
+        <div
+          class="fixed-grid has-2-cols-mobile has-3-cols-tablet has-4-cols-desktop"
+        >
+          <div class="grid is-gap-7" id="productos"></div>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>

@@ -30,12 +30,14 @@ const products = [
     description: "Ergonomic wireless mouse with adjustable DPI.",
     price: 29.99,
     image: "https://via.placeholder.com/150?text=Wireless+Mouse",
+    category: "Accessories",
   },
   {
     name: "Mechanical Keyboard",
     description: "RGB backlit mechanical keyboard with Cherry MX switches.",
     price: 89.99,
     image: "https://via.placeholder.com/150?text=Mechanical+Keyboard",
+    category: "Peripherals",
   },
   {
     name: "Gaming Headset",
@@ -43,24 +45,28 @@ const products = [
       "Surround sound gaming headset with noise-cancelling microphone.",
     price: 59.99,
     image: "https://via.placeholder.com/150?text=Gaming+Headset",
+    category: "Audio",
   },
   {
     name: "27-inch Monitor",
     description: "4K UHD monitor with IPS display and 144Hz refresh rate.",
     price: 329.99,
     image: "https://via.placeholder.com/150?text=27-inch+Monitor",
+    category: "Displays",
   },
   {
     name: "Laptop Stand",
     description: "Adjustable aluminum laptop stand for ergonomic work setup.",
     price: 39.99,
     image: "https://via.placeholder.com/150?text=Laptop+Stand",
+    category: "Accessories",
   },
   {
     name: "USB-C Hub",
     description: "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
     price: 24.99,
     image: "https://via.placeholder.com/150?text=USB-C+Hub",
+    category: "Peripherals",
   },
   {
     name: "External SSD",
@@ -68,30 +74,35 @@ const products = [
       "Portable external SSD with 1TB storage and USB 3.1 interface.",
     price: 129.99,
     image: "https://via.placeholder.com/150?text=External+SSD",
+    category: "Storage",
   },
   {
     name: "Smartphone Stand",
     description: "Adjustable smartphone stand with 360-degree rotation.",
     price: 19.99,
     image: "https://via.placeholder.com/150?text=Smartphone+Stand",
+    category: "Accessories",
   },
   {
     name: "Bluetooth Speaker",
     description: "Portable Bluetooth speaker with 10-hour battery life.",
     price: 49.99,
     image: "https://via.placeholder.com/150?text=Bluetooth+Speaker",
+    category: "Audio",
   },
   {
     name: "Webcam",
     description: "1080p HD webcam with built-in microphone and privacy cover.",
     price: 34.99,
     image: "https://via.placeholder.com/150?text=Webcam",
+    category: "Peripherals",
   },
   {
     name: "Wireless Charger",
     description: "Fast wireless charger with Qi compatibility.",
     price: 25.99,
     image: "https://via.placeholder.com/150?text=Wireless+Charger",
+    category: "Accessories",
   },
   {
     name: "Noise-Cancelling Headphones",
@@ -99,12 +110,14 @@ const products = [
       "Over-ear noise-cancelling headphones with Bluetooth connectivity.",
     price: 199.99,
     image: "https://via.placeholder.com/150?text=Noise-Cancelling+Headphones",
+    category: "Audio",
   },
   {
     name: "Smartwatch",
     description: "Smartwatch with heart rate monitor and GPS.",
     price: 149.99,
     image: "https://via.placeholder.com/150?text=Smartwatch",
+    category: "Wearables",
   },
 ];
 
@@ -163,18 +176,18 @@ const renderCard = (product) => {
   return card;
 };
 
-const dropdown = document.getElementById('dropdown');
-const dropdownMenu = document.getElementById('dropdown-menu');
-const dropdownItems = document.querySelectorAll('.dropdown-item');
+const dropdown = document.getElementById("dropdown");
+const dropdownMenu = document.getElementById("dropdown-menu");
+const dropdownItems = document.querySelectorAll(".dropdown-item");
 
-dropdown.addEventListener('click', () => {
-  dropdown.classList.toggle('is-active');
+dropdown.addEventListener("click", () => {
+  dropdown.classList.toggle("is-active");
 });
 
-dropdownItems.forEach(item => {
-  item.addEventListener('click', (event) => {
+dropdownItems.forEach((item) => {
+  item.addEventListener("click", (event) => {
     event.preventDefault();
-    const sortType = item.getAttribute('data-sort');
+    const sortType = item.getAttribute("data-sort");
     sortProducts(sortType);
   });
 });
@@ -183,10 +196,10 @@ const sortProducts = (type) => {
   let sortedProducts;
 
   switch (type) {
-    case 'price-asc':
+    case "price-asc":
       sortedProducts = [...products].sort((a, b) => a.price - b.price);
       break;
-    case 'price-desc':
+    case "price-desc":
       sortedProducts = [...products].sort((a, b) => b.price - a.price);
       break;
     default:
@@ -196,3 +209,33 @@ const sortProducts = (type) => {
   renderProducts(sortedProducts);
 };
 
+const dropdownCategoria = document.getElementById("dropdown-categoria");
+const dropdownMenuCategoria = document.getElementById(
+  "dropdown-menu-categoria"
+);
+const dropdownItemsCategorias = document.querySelectorAll(".item-categoria");
+
+dropdown.addEventListener("click", () => {
+  dropdownCategoria.classList.toggle("is-active");
+});
+
+dropdownItemsCategorias.forEach((item) => {
+  item.addEventListener("click", (event) => {
+    event.preventDefault();
+    const sortType = item.getAttribute("data-sort");
+    filterProductsByCategory(sortType);
+  });
+});
+
+const filterProductsByCategory = (category) => {
+  if (category === "todas") {
+    renderProducts(products);
+    return;
+  } else {
+    const filteredProducts = products.filter((product) => {
+      return product.category === category;
+    });
+
+    renderProducts(filteredProducts);
+  }
+};
