@@ -239,3 +239,18 @@ const filterProductsByCategory = (category) => {
     renderProducts(filteredProducts);
   }
 };
+
+document.querySelector('#titulo a').addEventListener('click', function(e) {
+  e.preventDefault();
+  
+  const rect = this.getBoundingClientRect();
+  
+  const x = (rect.left + rect.right) / 2 / window.innerWidth;
+  const y = (rect.top + rect.bottom) / 2 / window.innerHeight;
+  
+  confetti({
+    particleCount: 80,
+    spread: 170,
+    origin: { x: x, y: y }
+  });
+});
