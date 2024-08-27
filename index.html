@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Bulma!</title>
+    <title>Humildify</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
@@ -117,6 +117,69 @@
           </div>
         </div>
       </div>
+
+    <!-- Botón para agregar un nuevo producto -->
+    <button class="button is-primary js-modal-trigger" data-target="productModal">Agregar producto</button>
+
+    <!-- Modal para ingresar los detalles del nuevo producto -->
+    <div class="modal" id="productModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Agregar nuevo producto</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <form id="productForm">
+            <div class="field">
+              <label class="label">Nombre</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Nombre del producto" id="productName" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Descripción</label>
+              <div class="control">
+                <textarea class="textarea" placeholder="Descripción del producto" id="productDescription" required></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Imagen (URL)</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="URL de la imagen" id="productImage" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Precio</label>
+              <div class="control">
+                <input class="input" type="number" placeholder="Precio del producto" id="productPrice" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="productCategory">Categoría:</label>
+              <div class="control">
+                  <div class="select">
+                      <select id="productCategory" required>
+                          <option value="" disabled selected>Seleccioná la categoría</option>
+                      </select>
+                  </div>
+              </div>
+          </div>          
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" id="saveProductButton">Guardar</button>
+          <button class="button">Cancelar</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Lista de productos -->
+    <ul id="productList"></ul>
 
       <section class="section">
         <div

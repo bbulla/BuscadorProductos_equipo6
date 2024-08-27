@@ -201,3 +201,84 @@ function drop(event) {
 
 document.getElementById("carrito").addEventListener("dragover", allowDrop);
 document.getElementById("carrito").addEventListener("drop", drop);
+
+const categorias = ["Accessories", "Peripherals", "Audio", "Displays", "Storage", "Wearables"];
+
+const productCategorySelect = document.getElementById("productCategory");
+
+categorias.forEach(categoria => {
+    const option = document.createElement("option");
+    option.value = categoria;
+    option.textContent = categoria;
+    productCategorySelect.appendChild(option);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  document.querySelectorAll('.js-modal-trigger').forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  document.querySelectorAll('.modal-background, .delete, .modal-card-foot .button').forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === "Escape") {
+      closeAllModals();
+    }
+  });
+
+  const saveProductButton = document.getElementById("saveProductButton");
+  const productForm = document.getElementById("productForm");
+
+  saveProductButton.addEventListener('click', () => {
+    if (productForm.checkValidity()) {
+      const name = document.getElementById("productName").value;
+      const description = document.getElementById("productDescription").value;
+      const image = document.getElementById("productImage").value;
+      const price = parseFloat(document.getElementById("productPrice").value);
+
+      const newProduct = {
+        name,
+        description,
+        image,
+        price,
+        category: "Accessories",
+      };
+
+      addProductToList(newProduct);
+      closeAllModals();
+      productForm.reset();
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  });
+
+  function addProductToList(product) {
+    products.push(product);
+    renderProducts(products);
+  }
+});
