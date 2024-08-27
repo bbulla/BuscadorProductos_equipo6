@@ -1,28 +1,7 @@
 const searchInput = document.getElementById("searchInput");
 
-document.getElementById("searchButton").addEventListener("click", () => {
-  const text = searchInput.value;
-
-  const filteredProducts = filterProducts(text);
-
-  renderProducts(filteredProducts);
-});
-
-searchInput.addEventListener("input", (event) => {
-  const text = searchInput.value;
-
-  const filteredProducts = filterProducts(text);
-
-  renderProducts(filteredProducts);
-
-});
-
-
 const cardsContainer = document.getElementById("productos");
-
-window.onload = () => {
-  renderProducts(products);
-};
+const carrito = document.getElementById("listaCarrito");
 
 const products = [
   {
@@ -121,136 +100,121 @@ const products = [
   },
 ];
 
-const filterProducts = (searchText) => {
-  const filteredProducts = products.filter((product) => {
-    return product.name.toLowerCase().includes(searchText.toLowerCase());
-  });
-
-  return filteredProducts;
+window.onload = () => {
+  renderProducts(products);
 };
 
-const emptyState = `<div class="notification has-text-centered">
-          <p class="title is-4">No se encontraron productos</p>
-        </div>`;
-
-const renderProducts = (products) => {
-  if (products.length === 0) {
-    cardsContainer.innerHTML = emptyState;
-    return;
-  }
-
-  const renderedProducts = products.map((product) => renderCard(product));
-
-  const renderedProductsStrings = renderedProducts.reduce(
-    (acc, product) => acc + product,
-    ""
+document.getElementById("searchButton").addEventListener("click", () => {
+  const text = searchInput.value.toLowerCase();
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(text)
   );
+  renderProducts(filteredProducts);
+});
 
-  cardsContainer.innerHTML = renderedProductsStrings;
-};
+document.getElementById("dropdown").addEventListener("click", () => {
+  document.getElementById("dropdown").classList.toggle("is-active");
+});
 
-const renderCard = (product) => {
-  const card = `
-        <div class="cell">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="${product.image}" alt="${product.name}" />
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">${product.name}</p>
-                  <p class="subtitle is-4">${product.price}</p>
-                </div>
-              </div>
-              <div class="content">
-                ${product.description}
-                <br />
-              </div>
+document.querySelectorAll(".dropdown-item").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    event.preventDefault();
+    const sortType = item.getAttribute("data-sort");
+    let sortedProducts = [...products];
+    if (sortType === "price-asc")
+      sortedProducts.sort((a, b) => a.price - b.price);
+    else if (sortType === "price-desc")
+      sortedProducts.sort((a, b) => b.price - a.price);
+    renderProducts(sortedProducts);
+  });
+});
+
+document.getElementById("dropdown-categoria").addEventListener("click", () => {
+  document.getElementById("dropdown-categoria").classList.toggle("is-active");
+});
+
+document.querySelectorAll(".item-categoria").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    event.preventDefault();
+    const category = item.getAttribute("data-sort");
+    const filteredProducts =
+      category === "todas"
+        ? products
+        : products.filter((product) => product.category === category);
+    renderProducts(filteredProducts);
+  });
+});
+
+function renderProducts(products) {
+  cardsContainer.innerHTML =
+    products.length === 0
+      ? `<div class="notification has-text-centered"><p class="title is-4">No se encontraron productos</p></div>`
+      : products.map((product) => renderCard(product)).join("");
+  attachDragEvents();
+}
+
+function renderCard(product) {
+  return `
+    <div class="cell product" draggable="true" data-product-id="${product.name}">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="${product.image}" alt="${product.name}" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">${product.name}</p>
+              <p class="subtitle is-4">${product.price}</p>
             </div>
           </div>
-        </div>`;
+          <div class="content">${product.description}</div>
+        </div>
+      </div>
+    </div>`;
+}
 
-  return card;
-};
-
-const dropdown = document.getElementById("dropdown");
-const dropdownMenu = document.getElementById("dropdown-menu");
-const dropdownItems = document.querySelectorAll(".dropdown-item");
-
-dropdown.addEventListener("click", () => {
-  dropdown.classList.toggle("is-active");
-});
-
-dropdownItems.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const sortType = item.getAttribute("data-sort");
-    sortProducts(sortType);
+function attachDragEvents() {
+  document.querySelectorAll(".product").forEach((product) => {
+    product.addEventListener("dragstart", drag);
   });
-});
+}
 
-const sortProducts = (type) => {
-  let sortedProducts;
+function drag(event) {
+  event.dataTransfer.setData("text", event.target.dataset.productId);
+}
 
-  switch (type) {
-    case "price-asc":
-      sortedProducts = [...products].sort((a, b) => a.price - b.price);
-      break;
-    case "price-desc":
-      sortedProducts = [...products].sort((a, b) => b.price - a.price);
-      break;
-    default:
-      sortedProducts = [...products];
+function allowDrop(event) {
+  event.preventDefault();
+}
+
+function drop(event) {
+  event.preventDefault();
+  const productId = event.dataTransfer.getData("text");
+  const product = products.find((p) => p.name === productId);
+  if (product) {
+    const item = document.createElement("li");
+    item.textContent = product.name;
+    carrito.appendChild(item);
   }
+}
 
-  renderProducts(sortedProducts);
-};
+document.getElementById("carrito").addEventListener("dragover", allowDrop);
+document.getElementById("carrito").addEventListener("drop", drop);
 
-const dropdownCategoria = document.getElementById("dropdown-categoria");
-const dropdownMenuCategoria = document.getElementById(
-  "dropdown-menu-categoria"
-);
-const dropdownItemsCategorias = document.querySelectorAll(".item-categoria");
+searchInput.addEventListener("input", (event) => {
+  const text = searchInput.value;
 
-dropdown.addEventListener("click", () => {
-  dropdownCategoria.classList.toggle("is-active");
+  const filteredProducts = filteredProducts(text);
+
+  renderProducts(filteredProducts);
 });
 
-dropdownItemsCategorias.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const sortType = item.getAttribute("data-sort");
-    filterProductsByCategory(sortType);
-  });
-});
+document.getElementById("searchButton").addEventListener("click", () => {
+  const text = searchInput.value;
 
-const filterProductsByCategory = (category) => {
-  if (category === "todas") {
-    renderProducts(products);
-    return;
-  } else {
-    const filteredProducts = products.filter((product) => {
-      return product.category === category;
-    });
+  const filteredProducts = filteredProducts(text);
 
-    renderProducts(filteredProducts);
-  }
-};
-
-document.querySelector('#titulo a').addEventListener('click', function(e) {
-  e.preventDefault();
-  
-  const rect = this.getBoundingClientRect();
-  
-  const x = (rect.left + rect.right) / 2 / window.innerWidth;
-  const y = (rect.top + rect.bottom) / 2 / window.innerHeight;
-  
-  confetti({
-    particleCount: 80,
-    spread: 170,
-    origin: { x: x, y: y }
-  });
+  renderProducts(filteredProducts);
 });
