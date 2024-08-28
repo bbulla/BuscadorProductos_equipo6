@@ -20,6 +20,22 @@
     flex-direction: column;
 }
 
-.input{
+.input {
     width: 100%;
+}
+
+.busqueda {
+    width: 50vw;
+}
+
+#titulo:hover {
+    text-decoration: none;
+    color: rgb(130, 182, 255);
+    scale: 1.03;
+}
+
+#titulo a:link,
+#titulo a:visited {
+    text-decoration: none;
+    color: rgb(150, 194, 255);
 }

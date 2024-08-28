@@ -1,4 +1,5 @@
 const searchInput = document.getElementById("searchInput");
+
 const cardsContainer = document.getElementById("productos");
 const carrito = document.getElementById("listaCarrito");
 
@@ -104,6 +105,15 @@ window.onload = () => {
 };
 
 document.getElementById("searchButton").addEventListener("click", () => {
+  const text = searchInput.value.toLowerCase();
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(text)
+  );
+  renderProducts(filteredProducts);
+});
+
+
+searchInput.addEventListener("input", (event) => {
   const text = searchInput.value.toLowerCase();
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(text)
