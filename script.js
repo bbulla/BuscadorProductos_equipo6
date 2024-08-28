@@ -277,7 +277,7 @@ function drop(event) {
   event.preventDefault();
   const productId = event.dataTransfer.getData("text");
   const product = products.find(p => p.name === productId);
-  
+
   if (product) {
     const existingItem = carrito.querySelector(`div[data-product-id="${productId}"]`);
     if (existingItem) {
@@ -295,14 +295,22 @@ function drop(event) {
 function addItemToCart(product) {
   const item = document.createElement("div");
   item.setAttribute('data-product-id', product.name);
-  item.className = "box my-3 accent-color";
+  item.className = "box my-3 accent-color is-flex is-align-items-center ";
   item.innerHTML = `
-    <b>${product.name}</b> - $${product.price}
-    <span class="quantity">0</span> unidad(es)
-    <button onclick="increaseQuantity('${product.name}', 1)">+</button>
-    <button onclick="increaseQuantity('${product.name}', -1)">-</button>
-  `;
+    <button class="button p-2" onclick="deleteItem('${product.name}')">X</button>
+    <p class="p-2"><b>${product.name}</b>    - $${product.price}</p>
+    <p class="p-2"><span class="quantity">0</span> unidad(es)</p>
+    <button class="button p-2" onclick="increaseQuantity('${product.name}', -1)">-</button>
+    <button class="button p-2" onclick="increaseQuantity('${product.name}', 1)">+</button>
+    `;
+
   carrito.appendChild(item);
+}
+function deleteItem(productName) {
+  const item = carrito.querySelector(`div[data-product-id="${productName}"]`);
+  if (item) {
+    carrito.removeChild(item);
+  }
 }
 
 function increaseQuantity(productId, change) {
