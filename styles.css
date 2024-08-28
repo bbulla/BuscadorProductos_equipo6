@@ -39,6 +39,7 @@ body {}
 
 #titulo {
     color: #00D1B2;
+    transition: scale 0.3s ease;
 }
 
 #titulo:hover {
@@ -60,5 +61,13 @@ body {}
 
 .accent-shadow {
     box-shadow: 0px 0px 20px -8px #00D1B2;
+}
+
+.card {
+    transition: scale 0.3s ease;
+}
+
+.card:hover {
+    scale: 1.02;
 }
 

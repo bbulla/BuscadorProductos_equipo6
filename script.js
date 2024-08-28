@@ -328,7 +328,7 @@ title.addEventListener('click', function () {
   const emojis = ['🚀', '🌈', '🦄', '🌟', '🎉', '🎈', '🎊', '🔥', '💥', '🌲'];
 
   const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-  this.textContent = "Humildify" + randomEmoji;
+  this.textContent = "Humildify " + randomEmoji;
 
 });
 
