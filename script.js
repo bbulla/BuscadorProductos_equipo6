@@ -4,6 +4,7 @@ const searchInput = document.getElementById("searchInput");
 
 const cardsContainer = document.getElementById("productos");
 const carrito = document.getElementById("listaCarrito");
+const modalDetail = document.getElementById("modal-detail");
 
 let webColor = "#c6c7ff";
 
@@ -12,40 +13,49 @@ const products = [
     name: "Mouse Inalámbrico",
     description: "Mouse ergonómico inalámbrico con DPI ajustable.",
     price: 29.99,
-    image: "https://f.fcdn.app/imgs/3e4c97/www.zonatecno.com.uy/zoteuy/6f3c/original/catalogo/100041_100041_1/2000-2000/mouse-inalambrico-havit-hv-ms76gt-1600dpi-black-mouse-inalambrico-havit-hv-ms76gt-1600dpi-black.jpg",
+    image:
+      "https://f.fcdn.app/imgs/3e4c97/www.zonatecno.com.uy/zoteuy/6f3c/original/catalogo/100041_100041_1/2000-2000/mouse-inalambrico-havit-hv-ms76gt-1600dpi-black-mouse-inalambrico-havit-hv-ms76gt-1600dpi-black.jpg",
     category: "Accesorios",
   },
   {
     name: "Teclado Mecánico",
-    description: "Teclado mecánico retroiluminado RGB con interruptores Cherry MX.",
+    description:
+      "Teclado mecánico retroiluminado RGB con interruptores Cherry MX.",
     price: 89.99,
-    image: "https://http2.mlstatic.com/D_NQ_NP_667185-MLU73412738232_122023-O.webp",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_667185-MLU73412738232_122023-O.webp",
     category: "Periféricos",
   },
   {
     name: "Auriculares Gaming",
-    description: "Auriculares gaming con sonido envolvente y micrófono con cancelación de ruido.",
+    description:
+      "Auriculares gaming con sonido envolvente y micrófono con cancelación de ruido.",
     price: 59.99,
-    image: "https://f.fcdn.app/imgs/46c2e8/www.covercompany.com.uy/coveuy/c5b2/original/catalogo/2-4551_11535_1/2000-2000/auriculares-inalambricos-jbl-tune-770nc-c-cancelacion-de-ruido-black.jpg",
+    image:
+      "https://f.fcdn.app/imgs/46c2e8/www.covercompany.com.uy/coveuy/c5b2/original/catalogo/2-4551_11535_1/2000-2000/auriculares-inalambricos-jbl-tune-770nc-c-cancelacion-de-ruido-black.jpg",
     category: "Audio",
   },
   {
     name: "Monitor de 27 pulgadas",
     description: "Monitor 4K UHD con pantalla IPS y tasa de refresco de 144Hz.",
     price: 329.99,
-    image: "https://http2.mlstatic.com/D_NQ_NP_735145-MLA48131216536_112021-O.webp",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_735145-MLA48131216536_112021-O.webp",
     category: "Pantallas",
   },
   {
     name: "Soporte para Laptop",
-    description: "Soporte ajustable de aluminio para una configuración ergonómica.",
+    description:
+      "Soporte ajustable de aluminio para una configuración ergonómica.",
     price: 39.99,
-    image: "https://clever.uy/cdn/shop/products/D_797687-MLU48505835167_122021-O_600x600.jpg?v=1639603123",
+    image:
+      "https://clever.uy/cdn/shop/products/D_797687-MLU48505835167_122021-O_600x600.jpg?v=1639603123",
     category: "Accesorios",
   },
   {
     name: "Hub USB-C",
-    description: "Hub multi-puerto USB-C con HDMI, USB 3.0 y lector de tarjetas SD.",
+    description:
+      "Hub multi-puerto USB-C con HDMI, USB 3.0 y lector de tarjetas SD.",
     price: 24.99,
     image: "https://m.media-amazon.com/images/I/61S7Asj36AL._AC_SL1500_.jpg",
     category: "Periféricos",
@@ -54,40 +64,48 @@ const products = [
     name: "SSD Externo",
     description: "SSD externo portátil con 1TB de almacenamiento y USB 3.1.",
     price: 129.99,
-    image: "https://pronet.uy/wp-content/uploads/SSD-Externo-1TB-Kingston-XS1000-pronet.jpg",
+    image:
+      "https://pronet.uy/wp-content/uploads/SSD-Externo-1TB-Kingston-XS1000-pronet.jpg",
     category: "Almacenamiento",
   },
   {
     name: "Soporte para Smartphone",
-    description: "Soporte ajustable para smartphone con rotación de 360 grados.",
+    description:
+      "Soporte ajustable para smartphone con rotación de 360 grados.",
     price: 19.99,
-    image: "https://http2.mlstatic.com/D_NQ_NP_821020-MLU77736270331_072024-O.webp",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_821020-MLU77736270331_072024-O.webp",
     category: "Accesorios",
   },
   {
     name: "Altavoz Bluetooth",
     description: "Altavoz Bluetooth portátil con 10 horas de autonomía.",
     price: 49.99,
-    image: "https://circuit.com.uy/images/thumbs/0099742_parlante-bluetooth-doble-8-luces-40w-j2808_550.jpeg",
+    image:
+      "https://circuit.com.uy/images/thumbs/0099742_parlante-bluetooth-doble-8-luces-40w-j2808_550.jpeg",
     category: "Audio",
   },
   {
     name: "Cámara Web",
-    description: "Cámara web HD 1080p con micrófono incorporado y cubierta de privacidad.",
+    description:
+      "Cámara web HD 1080p con micrófono incorporado y cubierta de privacidad.",
     price: 34.99,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXs8o1qWTFTaGVERaMIo4FKP6CkbkYD7xv_g&s",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXs8o1qWTFTaGVERaMIo4FKP6CkbkYD7xv_g&s",
     category: "Periféricos",
   },
   {
     name: "Cargador Inalámbrico",
     description: "Cargador inalámbrico rápido con compatibilidad Qi.",
     price: 25.99,
-    image: "https://f.fcdn.app/imgs/a2390c/zonalaptop.com.uy/zlapuy/39f2/original/catalogo/848061060119_848061060119_1/2000-2000/cargador-inalambrico-anker-powerwave-pad-cargador-inalambrico-anker-powerwave-pad.jpg",
+    image:
+      "https://f.fcdn.app/imgs/a2390c/zonalaptop.com.uy/zlapuy/39f2/original/catalogo/848061060119_848061060119_1/2000-2000/cargador-inalambrico-anker-powerwave-pad-cargador-inalambrico-anker-powerwave-pad.jpg",
     category: "Accesorios",
   },
   {
     name: "Auriculares con Cancelación de Ruido",
-    description: "Auriculares con cancelación de ruido y conectividad Bluetooth.",
+    description:
+      "Auriculares con cancelación de ruido y conectividad Bluetooth.",
     price: 199.99,
     image: "https://m.media-amazon.com/images/I/51Ltm3tbH2L.jpg",
     category: "Audio",
@@ -96,11 +114,11 @@ const products = [
     name: "Reloj Inteligente",
     description: "Reloj inteligente con monitor de ritmo cardíaco y GPS.",
     price: 149.99,
-    image: "https://prod-resize.tiendainglesa.com.uy/images/medium/P571137-2.jpg?20240219094552,Smartwatch-S8-Negro-en-Tienda-Inglesa",
+    image:
+      "https://prod-resize.tiendainglesa.com.uy/images/medium/P571137-2.jpg?20240219094552,Smartwatch-S8-Negro-en-Tienda-Inglesa",
     category: "Wearables",
   },
 ];
-
 
 window.onload = () => {
   renderProducts(products);
@@ -113,7 +131,6 @@ document.getElementById("searchButton").addEventListener("click", () => {
   );
   renderProducts(filteredProducts);
 });
-
 
 searchInput.addEventListener("input", (event) => {
   const text = searchInput.value.toLowerCase();
@@ -156,34 +173,32 @@ document.querySelectorAll(".item-categoria").forEach((item) => {
   });
 });
 
+function openDetailModal(product) {
+  product.stopPropagation();
+
+  modalDetail.classList.add("is-active");
+  const productDetail = products.find((p) => p.name === product.target.id);
+
+  modalDetail.querySelector(".modal-card-title").textContent =
+    productDetail.name;
+  document.getElementById("modal-image").src = productDetail.image;
+  document.getElementById("modal-description").textContent =
+    productDetail.description;
+  document.getElementById(
+    "modal-price"
+  ).textContent = `${productDetail.price} USD`;
+}
+
 function renderProducts(products) {
   cardsContainer.innerHTML =
     products.length === 0
       ? `<div class="notification has-text-centered"><p class="title is-4">No se encontraron productos</p></div>`
       : products.map((product) => renderCard(product)).join("");
   attachDragEvents();
-}
 
-function renderCard(product) {
-  return `
-    <div class="cell product" draggable="true" data-product-id="${product.name}">
-      <div class="card accent-shadow">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${product.image}" alt="${product.name}" />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">${product.name}</p>
-              <p class="subtitle is-4">${product.price}</p>
-            </div>
-          </div>
-          <div class="content">${product.description}</div>
-        </div>
-      </div>
-    </div>`;
+  document.querySelectorAll(".product").forEach(($product) => {
+    $product.addEventListener("click", openDetailModal);
+  });
 }
 
 function attachDragEvents() {
@@ -205,14 +220,9 @@ function drop(event) {
   const productId = event.dataTransfer.getData("text");
   const product = products.find((p) => p.name === productId);
   if (product) {
-    // const item = document.createElement("li");
-    // item.textContent = product.name;
-    // carrito.appendChild(item);
     const item = document.createElement("div");
-    item.innerHTML = `<div class="box my-3 accent-color"><b>${product.name}</b></div>`
+    item.innerHTML = `<div class="box my-3 accent-color"><b>${product.name}</b></div>`;
     carrito.appendChild(item);
-
-
   }
 }
 
@@ -230,46 +240,48 @@ const categorias = [
 
 const productCategorySelect = document.getElementById("productCategory");
 
-categorias.forEach(categoria => {
+categorias.forEach((categoria) => {
   const option = document.createElement("option");
   option.value = categoria;
   option.textContent = categoria;
   productCategorySelect.appendChild(option);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   function openModal($el) {
-    $el.classList.add('is-active');
+    $el.classList.add("is-active");
   }
 
   function closeModal($el) {
-    $el.classList.remove('is-active');
+    $el.classList.remove("is-active");
   }
 
   function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+    (document.querySelectorAll(".modal") || []).forEach(($modal) => {
       closeModal($modal);
     });
   }
 
-  document.querySelectorAll('.js-modal-trigger').forEach(($trigger) => {
+  document.querySelectorAll(".js-modal-trigger").forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
 
-    $trigger.addEventListener('click', () => {
+    $trigger.addEventListener("click", () => {
       openModal($target);
     });
   });
 
-  document.querySelectorAll('.modal-background, .delete, .modal-card-foot .button').forEach(($close) => {
-    const $target = $close.closest('.modal');
+  document
+    .querySelectorAll(".modal-background, .delete, .modal-card-foot .button")
+    .forEach(($close) => {
+      const $target = $close.closest(".modal");
 
-    $close.addEventListener('click', () => {
-      closeModal($target);
+      $close.addEventListener("click", () => {
+        closeModal($target);
+      });
     });
-  });
 
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeAllModals();
     }
@@ -278,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveProductButton = document.getElementById("saveProductButton");
   const productForm = document.getElementById("productForm");
 
-  saveProductButton.addEventListener('click', () => {
+  saveProductButton.addEventListener("click", () => {
     if (productForm.checkValidity()) {
       const name = document.getElementById("productName").value;
       const description = document.getElementById("productDescription").value;
@@ -297,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
       closeAllModals();
       productForm.reset();
     } else {
-      alert('Por favor, completa todos los campos.');
+      alert("Por favor, completa todos los campos.");
     }
   });
 
@@ -307,11 +319,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-/* Titulo y afectos de acentos*/
-
 // Confetti: https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js
-title.addEventListener('click', function (e) {
+title.addEventListener("click", function (e) {
   e.preventDefault();
 
   const rect = this.getBoundingClientRect();
@@ -322,48 +331,72 @@ title.addEventListener('click', function (e) {
   confetti({
     particleCount: 20,
     spread: 200,
-    origin: { x: x, y: y }
+    origin: { x: x, y: y },
   });
 });
 
-title.addEventListener('click', function () {
-  // Genera un color random de color claro
+title.addEventListener("click", function () {
   webColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
-  setAccentColors(webColor)
+  setAccentColors(webColor);
 
-  const emojis = ['🚀', '🌈', '🦄', '🌟', '🎉', '🎈', '🎊', '🔥', '💥', '🌲'];
+  const emojis = ["🚀", "🌈", "🦄", "🌟", "🎉", "🎈", "🎊", "🔥", "💥", "🌲"];
 
   const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
   this.textContent = "Humildify " + randomEmoji;
-
 });
 
 function setAccentColors(color) {
-  const elementsColor = Array.from(document.getElementsByClassName("accent-color"));
-  const elementsBackground = Array.from(document.getElementsByClassName("accent-background"));
-  const elementsShadow = Array.from(document.getElementsByClassName("accent-shadow"));
-  const elementsOutline = Array.from(document.getElementsByClassName("accent-outline"));
+  const elementsColor = Array.from(
+    document.getElementsByClassName("accent-color")
+  );
+  const elementsBackground = Array.from(
+    document.getElementsByClassName("accent-background")
+  );
+  const elementsShadow = Array.from(
+    document.getElementsByClassName("accent-shadow")
+  );
 
-
-  elementsColor.forEach(element => {
+  elementsColor.forEach((element) => {
     element.style.color = color;
   });
 
-  elementsBackground.forEach(element => {
+  elementsBackground.forEach((element) => {
     element.style.backgroundColor = color;
   });
 
-  elementsShadow.forEach(element => {
+  elementsShadow.forEach((element) => {
     element.style.boxShadow = `0px 0px 20px -8px ${color}`;
   });
 
-  elementsShadow.forEach(element => {
-    element.addEventListener('focus', () => {
+  elementsShadow.forEach((element) => {
+    element.addEventListener("focus", () => {
       element.style.borderColor = color;
     });
 
-    element.addEventListener('blur', () => {
-      element.style.borderColor = '';
+    element.addEventListener("blur", () => {
+      element.style.borderColor = "";
     });
   });
+}
+
+function renderCard(product) {
+  return `
+    <div class="cell product" draggable="true" id="${product.name}" data-product-id="${product.name}">
+      <div class="card accent-shadow">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="${product.image}" class=""full-width alt="${product.name}" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">${product.name}</p>
+              <p class="subtitle is-4">${product.price}</p>
+            </div>
+          </div>
+          <div class="content">${product.description}</div>
+        </div>
+      </div>
+    </div>`;
 }
