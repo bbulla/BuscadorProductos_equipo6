@@ -140,10 +140,6 @@ searchInput.addEventListener("input", (event) => {
   renderProducts(filteredProducts);
 });
 
-document.getElementById("dropdown").addEventListener("click", () => {
-  document.getElementById("dropdown").classList.toggle("is-active");
-});
-
 document.querySelectorAll(".dropdown-item").forEach((item) => {
   item.addEventListener("click", (event) => {
     event.preventDefault();
@@ -155,10 +151,6 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
       sortedProducts.sort((a, b) => b.price - a.price);
     renderProducts(sortedProducts);
   });
-});
-
-document.getElementById("dropdown-categoria").addEventListener("click", () => {
-  document.getElementById("dropdown-categoria").classList.toggle("is-active");
 });
 
 document.querySelectorAll(".item-categoria").forEach((item) => {
@@ -207,23 +199,8 @@ function attachDragEvents() {
   });
 }
 
-function drag(event) {
-  event.dataTransfer.setData("text", event.target.dataset.productId);
-}
-
 function allowDrop(event) {
   event.preventDefault();
-}
-
-function drop(event) {
-  event.preventDefault();
-  const productId = event.dataTransfer.getData("text");
-  const product = products.find((p) => p.name === productId);
-  if (product) {
-    const item = document.createElement("div");
-    item.innerHTML = `<div class="box my-3 accent-color"><b>${product.name}</b></div>`;
-    carrito.appendChild(item);
-  }
 }
 
 document.getElementById("carrito").addEventListener("dragover", allowDrop);
@@ -319,21 +296,130 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Confetti: https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js
-title.addEventListener("click", function (e) {
+document.addEventListener("DOMContentLoaded", () => {
+  renderProducts(products);
+  attachEventListeners();
+});
+
+function attachEventListeners() {
+  document
+    .getElementById("searchButton")
+    .addEventListener("click", filterAndRenderProducts);
+  searchInput.addEventListener("input", filterAndRenderProducts);
+  document.getElementById("dropdown").addEventListener("click", toggleDropdown);
+  document.querySelectorAll(".dropdown-item").forEach((item) => {
+    item.addEventListener("click", sortProducts);
+  });
+  document
+    .getElementById("dropdown-categoria")
+    .addEventListener("click", toggleDropdown);
+  document.querySelectorAll(".item-categoria").forEach((item) => {
+    item.addEventListener("click", filterByCategory);
+  });
+  document.getElementById("carrito").addEventListener("dragover", allowDrop);
+  document.getElementById("carrito").addEventListener("drop", drop);
+  title.addEventListener("click", toggleConfetti);
+}
+
+function toggleDropdown() {
+  this.classList.toggle("is-active");
+}
+
+
+function drag(event) {
+  event.dataTransfer.setData("text", event.target.dataset.productId);
+}
+
+function drop(event) {
+  event.preventDefault();
+  const productId = event.dataTransfer.getData("text");
+  const product = products.find((p) => p.name === productId);
+
+  if (product) {
+    const existingItem = carrito.querySelector(
+      `div[data-product-id="${productId}"]`
+    );
+    if (existingItem) {
+      const quantityElement = existingItem.querySelector(".quantity");
+      let quantity = parseInt(quantityElement.textContent);
+      quantityElement.textContent = quantity + 1;
+    } else {
+      addItemToCart(product);
+    }
+  }
+}
+
+function addItemToCart(product) {
+  const item = document.createElement("div");
+  item.setAttribute("data-product-id", product.name);
+  item.className = "box my-3 accent-color";
+  item.innerHTML = `
+    <div class="is-flex is-justify-content-space-between">
+      <div>
+        <b>${product.name}</b> - $${product.price}
+        <span class="quantity">0</span> unidad(es)
+      </div>
+      <div>
+        <button onclick="increaseQuantity('${product.name}', 1)">+</button>
+        <button onclick="increaseQuantity('${product.name}', -1)">-</button>
+      </div>
+    </div>
+  `;
+  carrito.appendChild(item);
+}
+
+function increaseQuantity(productId, change) {
+  const productElement = carrito.querySelector(
+    `div[data-product-id="${productId}"]`
+  );
+  const quantityElement = productElement.querySelector(".quantity");
+  let quantity = parseInt(quantityElement.textContent);
+  quantity = Math.max(1, quantity + change); // Asegura que la cantidad no sea menor que 1
+  quantityElement.textContent = quantity;
+}
+
+function sortProducts(event) {
+  event.preventDefault();
+  const sortType = this.getAttribute("data-sort");
+  let sortedProducts = [...products];
+  if (sortType === "price-asc") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  } else if (sortType === "price-desc") {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  }
+  renderProducts(sortedProducts);
+}
+
+function filterByCategory(event) {
+  event.preventDefault();
+  const category = this.getAttribute("data-sort");
+  const filteredProducts =
+    category === "Todas"
+      ? products
+      : products.filter((product) => product.category === category);
+  renderProducts(filteredProducts);
+}
+
+function filterAndRenderProducts() {
+  const text = searchInput.value.toLowerCase();
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(text)
+  );
+  renderProducts(filteredProducts);
+}
+
+function toggleConfetti(e) {
   e.preventDefault();
-
-  const rect = this.getBoundingClientRect();
-
+  const rect = title.getBoundingClientRect();
   const x = (rect.left + rect.right) / 2 / window.innerWidth;
   const y = (rect.top + rect.bottom) / 2 / window.innerHeight;
-
   confetti({
     particleCount: 20,
     spread: 200,
     origin: { x: x, y: y },
   });
-});
+  toggleAccentColor();
+}
 
 title.addEventListener("click", function () {
   webColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
@@ -399,4 +485,15 @@ function renderCard(product) {
         </div>
       </div>
     </div>`;
+}
+
+function toggleAccentColor() {
+  webColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
+  setAccentColors(webColor);
+  title.textContent = "Humildify " + getEmoji();
+}
+
+function getEmoji() {
+  const emojis = ["🚀", "🌈", "🦄", "🌟", "🎉", "🎈", "🎊", "🔥", "💥", "🌲"];
+  return emojis[Math.floor(Math.random() * emojis.length)];
 }
