@@ -44,6 +44,7 @@ body {}
 
 #titulo:hover {
     scale: 1.05;
+    cursor: pointer;
 }
 
 .floating-button {
@@ -69,5 +70,6 @@ body {}
 
 .card:hover {
     scale: 1.02;
+    cursor: pointer;
 }
 

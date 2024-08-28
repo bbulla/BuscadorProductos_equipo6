@@ -9,100 +9,98 @@ let webColor = "#c6c7ff";
 
 const products = [
   {
-    name: "Wireless Mouse",
-    description: "Ergonomic wireless mouse with adjustable DPI.",
+    name: "Mouse Inalámbrico",
+    description: "Mouse ergonómico inalámbrico con DPI ajustable.",
     price: 29.99,
-    image: "https://via.placeholder.com/150?text=Wireless+Mouse",
-    category: "Accessories",
+    image: "https://f.fcdn.app/imgs/3e4c97/www.zonatecno.com.uy/zoteuy/6f3c/original/catalogo/100041_100041_1/2000-2000/mouse-inalambrico-havit-hv-ms76gt-1600dpi-black-mouse-inalambrico-havit-hv-ms76gt-1600dpi-black.jpg",
+    category: "Accesorios",
   },
   {
-    name: "Mechanical Keyboard",
-    description: "RGB backlit mechanical keyboard with Cherry MX switches.",
+    name: "Teclado Mecánico",
+    description: "Teclado mecánico retroiluminado RGB con interruptores Cherry MX.",
     price: 89.99,
-    image: "https://via.placeholder.com/150?text=Mechanical+Keyboard",
-    category: "Peripherals",
+    image: "https://http2.mlstatic.com/D_NQ_NP_667185-MLU73412738232_122023-O.webp",
+    category: "Periféricos",
   },
   {
-    name: "Gaming Headset",
-    description:
-      "Surround sound gaming headset with noise-cancelling microphone.",
+    name: "Auriculares Gaming",
+    description: "Auriculares gaming con sonido envolvente y micrófono con cancelación de ruido.",
     price: 59.99,
-    image: "https://via.placeholder.com/150?text=Gaming+Headset",
+    image: "https://f.fcdn.app/imgs/46c2e8/www.covercompany.com.uy/coveuy/c5b2/original/catalogo/2-4551_11535_1/2000-2000/auriculares-inalambricos-jbl-tune-770nc-c-cancelacion-de-ruido-black.jpg",
     category: "Audio",
   },
   {
-    name: "27-inch Monitor",
-    description: "4K UHD monitor with IPS display and 144Hz refresh rate.",
+    name: "Monitor de 27 pulgadas",
+    description: "Monitor 4K UHD con pantalla IPS y tasa de refresco de 144Hz.",
     price: 329.99,
-    image: "https://via.placeholder.com/150?text=27-inch+Monitor",
-    category: "Displays",
+    image: "https://http2.mlstatic.com/D_NQ_NP_735145-MLA48131216536_112021-O.webp",
+    category: "Pantallas",
   },
   {
-    name: "Laptop Stand",
-    description: "Adjustable aluminum laptop stand for ergonomic work setup.",
+    name: "Soporte para Laptop",
+    description: "Soporte ajustable de aluminio para una configuración ergonómica.",
     price: 39.99,
-    image: "https://via.placeholder.com/150?text=Laptop+Stand",
-    category: "Accessories",
+    image: "https://clever.uy/cdn/shop/products/D_797687-MLU48505835167_122021-O_600x600.jpg?v=1639603123",
+    category: "Accesorios",
   },
   {
-    name: "USB-C Hub",
-    description: "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
+    name: "Hub USB-C",
+    description: "Hub multi-puerto USB-C con HDMI, USB 3.0 y lector de tarjetas SD.",
     price: 24.99,
-    image: "https://via.placeholder.com/150?text=USB-C+Hub",
-    category: "Peripherals",
+    image: "https://m.media-amazon.com/images/I/61S7Asj36AL._AC_SL1500_.jpg",
+    category: "Periféricos",
   },
   {
-    name: "External SSD",
-    description:
-      "Portable external SSD with 1TB storage and USB 3.1 interface.",
+    name: "SSD Externo",
+    description: "SSD externo portátil con 1TB de almacenamiento y USB 3.1.",
     price: 129.99,
-    image: "https://via.placeholder.com/150?text=External+SSD",
-    category: "Storage",
+    image: "https://pronet.uy/wp-content/uploads/SSD-Externo-1TB-Kingston-XS1000-pronet.jpg",
+    category: "Almacenamiento",
   },
   {
-    name: "Smartphone Stand",
-    description: "Adjustable smartphone stand with 360-degree rotation.",
+    name: "Soporte para Smartphone",
+    description: "Soporte ajustable para smartphone con rotación de 360 grados.",
     price: 19.99,
-    image: "https://via.placeholder.com/150?text=Smartphone+Stand",
-    category: "Accessories",
+    image: "https://http2.mlstatic.com/D_NQ_NP_821020-MLU77736270331_072024-O.webp",
+    category: "Accesorios",
   },
   {
-    name: "Bluetooth Speaker",
-    description: "Portable Bluetooth speaker with 10-hour battery life.",
+    name: "Altavoz Bluetooth",
+    description: "Altavoz Bluetooth portátil con 10 horas de autonomía.",
     price: 49.99,
-    image: "https://via.placeholder.com/150?text=Bluetooth+Speaker",
+    image: "https://circuit.com.uy/images/thumbs/0099742_parlante-bluetooth-doble-8-luces-40w-j2808_550.jpeg",
     category: "Audio",
   },
   {
-    name: "Webcam",
-    description: "1080p HD webcam with built-in microphone and privacy cover.",
+    name: "Cámara Web",
+    description: "Cámara web HD 1080p con micrófono incorporado y cubierta de privacidad.",
     price: 34.99,
-    image: "https://via.placeholder.com/150?text=Webcam",
-    category: "Peripherals",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXs8o1qWTFTaGVERaMIo4FKP6CkbkYD7xv_g&s",
+    category: "Periféricos",
   },
   {
-    name: "Wireless Charger",
-    description: "Fast wireless charger with Qi compatibility.",
+    name: "Cargador Inalámbrico",
+    description: "Cargador inalámbrico rápido con compatibilidad Qi.",
     price: 25.99,
-    image: "https://via.placeholder.com/150?text=Wireless+Charger",
-    category: "Accessories",
+    image: "https://f.fcdn.app/imgs/a2390c/zonalaptop.com.uy/zlapuy/39f2/original/catalogo/848061060119_848061060119_1/2000-2000/cargador-inalambrico-anker-powerwave-pad-cargador-inalambrico-anker-powerwave-pad.jpg",
+    category: "Accesorios",
   },
   {
-    name: "Noise-Cancelling Headphones",
-    description:
-      "Over-ear noise-cancelling headphones with Bluetooth connectivity.",
+    name: "Auriculares con Cancelación de Ruido",
+    description: "Auriculares con cancelación de ruido y conectividad Bluetooth.",
     price: 199.99,
-    image: "https://via.placeholder.com/150?text=Noise-Cancelling+Headphones",
+    image: "https://m.media-amazon.com/images/I/51Ltm3tbH2L.jpg",
     category: "Audio",
   },
   {
-    name: "Smartwatch",
-    description: "Smartwatch with heart rate monitor and GPS.",
+    name: "Reloj Inteligente",
+    description: "Reloj inteligente con monitor de ritmo cardíaco y GPS.",
     price: 149.99,
-    image: "https://via.placeholder.com/150?text=Smartwatch",
+    image: "https://prod-resize.tiendainglesa.com.uy/images/medium/P571137-2.jpg?20240219094552,Smartwatch-S8-Negro-en-Tienda-Inglesa",
     category: "Wearables",
   },
 ];
+
 
 window.onload = () => {
   renderProducts(products);
@@ -151,7 +149,7 @@ document.querySelectorAll(".item-categoria").forEach((item) => {
     event.preventDefault();
     const category = item.getAttribute("data-sort");
     const filteredProducts =
-      category === "todas"
+      category === "Todas"
         ? products
         : products.filter((product) => product.category === category);
     renderProducts(filteredProducts);
@@ -216,7 +214,14 @@ function drop(event) {
 document.getElementById("carrito").addEventListener("dragover", allowDrop);
 document.getElementById("carrito").addEventListener("drop", drop);
 
-const categorias = ["Accessories", "Peripherals", "Audio", "Displays", "Storage", "Wearables"];
+const categorias = [
+  "Accesorios",
+  "Periféricos",
+  "Audio",
+  "Pantallas",
+  "Almacenamiento",
+  "Wearables",
+];
 
 const productCategorySelect = document.getElementById("productCategory");
 
@@ -316,10 +321,6 @@ title.addEventListener('click', function (e) {
   });
 });
 
-title.addEventListener('mouseenter', function () {
-  this.style.cursor = 'pointer';
-});
-
 title.addEventListener('click', function () {
   // Genera un color random de color claro
   webColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
@@ -355,12 +356,9 @@ function setAccentColors(color) {
     element.addEventListener('focus', () => {
       element.style.borderColor = color;
     });
-  
+
     element.addEventListener('blur', () => {
       element.style.borderColor = '';
     });
   });
 }
-
-
-
