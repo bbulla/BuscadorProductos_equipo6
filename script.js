@@ -123,10 +123,6 @@ searchInput.addEventListener("input", (event) => {
   renderProducts(filteredProducts);
 });
 
-document.getElementById("dropdown").addEventListener("click", () => {
-  document.getElementById("dropdown").classList.toggle("is-active");
-});
-
 document.querySelectorAll(".dropdown-item").forEach((item) => {
   item.addEventListener("click", (event) => {
     event.preventDefault();
@@ -138,10 +134,6 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
       sortedProducts.sort((a, b) => b.price - a.price);
     renderProducts(sortedProducts);
   });
-});
-
-document.getElementById("dropdown-categoria").addEventListener("click", () => {
-  document.getElementById("dropdown-categoria").classList.toggle("is-active");
 });
 
 document.querySelectorAll(".item-categoria").forEach((item) => {
