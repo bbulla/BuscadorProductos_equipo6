@@ -9,25 +9,42 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
+  <!-- Algunos iconos son de fontawesome, otros de bootstrap (svg) -->
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script> 
 </head>
 
 <body>
+  <button class="button is-primary floating-button js-modal-trigger pt-2 accent-background" data-target="productModal">
+    <span class="icon">
+      <i class="fas fa-plus"></i>
+    </span>
+  </button>
+
+
   <div class="container">
     <section class="section">
-      <h1 class="title is-flex is-justify-content-center" id="titulo">Humildify ✨</h1>
+      <h1 class="title is-flex is-justify-content-center accent-color" id="titulo">Humildify ✨</h1>
       <div class="level is-flex is-justify-content-center">
         <div class="field has-addons">
           <p class="control">
             <input class="input busqueda" type="text" placeholder="Busca productos" id="searchInput" />
           </p>
           <p class="control">
-            <button class="button pr-4" id="searchButton">Buscar</button>
+            <button class="button pr-4" id="searchButton">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+              </span>
+            </button>
           </p>
         </div>
       </div>
     </section>
 
-    <section class="section py-0">
+    <section class="section py-0 is-flex is-justify-content-center">
       <div class="dropdown" id="dropdown">
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -50,13 +67,15 @@
         </div>
       </div>
 
-      <div class="dropdown" id="dropdown-categoria">
+      <div class="dropdown mx-3" id="dropdown-categoria">
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-categoria">
             <span>Categoria</span>
             <span class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
               </svg>
             </span>
           </button>
@@ -75,11 +94,8 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="section pt-3">
       <!-- Botón para agregar un nuevo producto -->
-      <button class="button is-primary js-modal-trigger pt-3" data-target="productModal">Agregar producto</button>
+      <!-- <button class="button is-primary js-modal-trigger pt-3" data-target="productModal">Agregar producto</button> -->
 
       <!-- Modal para ingresar los detalles del nuevo producto -->
       <div class="modal" id="productModal">
@@ -138,23 +154,26 @@
           </footer>
         </div>
       </div>
+    </section>
 
-      <!-- Lista de productos -->
-      <ul id="productList"></ul>
 
-      <section class="section">
-        <div class="fixed-grid has-1-cols-mobile has-3-cols-tablet has-4-cols-desktop">
-          <div class="grid is-gap-7" id="productos"></div>
-        </div>
-      </section>
 
-      <section class="section">
-        <h2 class="title">Carrito de Compras</h2>
-        <div class="box" id="carrito" ondragover="allowDrop(event)" ondrop="drop(event)">
-          <p>Arrastra los productos aquí</p>
-          <ul id="listaCarrito"></ul>
-        </div>
-      </section>
+    <!-- Lista de productos -->
+    <ul id="productList"></ul>
+
+    <section class="section">
+      <div class="fixed-grid has-1-cols-mobile has-3-cols-tablet has-3-cols-desktop">
+        <div class="grid is-gap-7" id="productos"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="title">Carrito de Compras</h2>
+      <div class="box" id="carrito" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <p>Arrastra los productos aquí</p>
+        <ul id="listaCarrito"></ul>
+      </div>
+    </section>
   </div>
 </body>
 

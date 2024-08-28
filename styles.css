@@ -32,9 +32,20 @@ body {}
 
 
 #titulo {
-    color: rgb(198, 199, 255);
+    color: #c6c7ff;
 }
 
 #titulo:hover {
+    scale: 1.05;
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 100%;
+}
+.floating-button:hover {
     scale: 1.05;
 }

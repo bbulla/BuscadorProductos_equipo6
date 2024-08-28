@@ -5,6 +5,8 @@ const searchInput = document.getElementById("searchInput");
 const cardsContainer = document.getElementById("productos");
 const carrito = document.getElementById("listaCarrito");
 
+let webColor = "#c6c7ff";
+
 const products = [
   {
     name: "Wireless Mouse",
@@ -320,10 +322,27 @@ title.addEventListener('mouseenter', function() {
 
 title.addEventListener('click', function() {
   // Genera un color random de color claro
-  this.style.color = `hsl(${Math.random() * 360}, 100%, 80%)`;
+  webColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
+  setAccentColors(webColor)
 
   const emojis = ['🚀', '🌈', '🦄', '🌟', '🎉', '🎈', '🎊', '🔥', '🎆', '💥'];
   const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
   this.textContent = "Humildify"+randomEmoji;
   
 });
+
+function setAccentColors(color) {
+  const elementsColor = Array.from(document.getElementsByClassName("accent-color"));
+  const elementsBackground = Array.from(document.getElementsByClassName("accent-background"));
+  elementsColor.forEach(element => {
+    element.style.color = color;
+  });
+
+  elementsBackground.forEach(element => {
+    element.style.backgroundColor = color;
+  });
+
+
+}
+
+
