@@ -298,7 +298,7 @@ function addItemToCart(product) {
   item.className = "box my-3 accent-color";
   item.innerHTML = `
     <b>${product.name}</b> - $${product.price}
-    <span class="quantity">1</span> unidad(es)
+    <span class="quantity">0</span> unidad(es)
     <button onclick="increaseQuantity('${product.name}', 1)">+</button>
     <button onclick="increaseQuantity('${product.name}', -1)">-</button>
   `;
