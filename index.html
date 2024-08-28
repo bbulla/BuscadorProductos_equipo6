@@ -14,9 +14,7 @@
 <body>
   <div class="container">
     <section class="section">
-      <h1 class="title is-flex is-justify-content-center" id="titulo">
-        <a href="#">Humildify 🛒</a>
-      </h1>
+      <h1 class="title is-flex is-justify-content-center" id="titulo">Humildify ✨</h1>
       <div class="level is-flex is-justify-content-center">
         <div class="field has-addons">
           <p class="control">
@@ -56,14 +54,16 @@
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu-categoria">
             <span>Categoria</span>
-            <span class="icon is-small">
-              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+              </svg>
             </span>
           </button>
         </div>
         <div class="dropdown-menu" id="dropdown-menu-categoria" role="menu">
           <div class="dropdown-content">
-            <a href="#" class="dropdown-item item-categoria" data-sort="todas">todas</a>
+            <a href="#" class="dropdown-item item-categoria" data-sort="todas">Todas</a>
             <a href="#" class="dropdown-item item-categoria" data-sort="Accessories">Accessories</a>
             <a href="#" class="dropdown-item item-categoria" data-sort="Peripherals">Peripherals</a>
             <a href="#" class="dropdown-item item-categoria" data-sort="Audio">Audio</a>
@@ -78,83 +78,83 @@
     </section>
 
     <section class="section pt-3">
-  <!-- Botón para agregar un nuevo producto -->
-  <button class="button is-primary js-modal-trigger pt-3" data-target="productModal">Agregar producto</button>
+      <!-- Botón para agregar un nuevo producto -->
+      <button class="button is-primary js-modal-trigger pt-3" data-target="productModal">Agregar producto</button>
 
-  <!-- Modal para ingresar los detalles del nuevo producto -->
-  <div class="modal" id="productModal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Agregar nuevo producto</p>
-        <button class="delete" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <form id="productForm">
-          <div class="field">
-            <label class="label">Nombre</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Nombre del producto" id="productName" required>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Descripción</label>
-            <div class="control">
-              <textarea class="textarea" placeholder="Descripción del producto" id="productDescription"
-                required></textarea>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Imagen (URL)</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="URL de la imagen" id="productImage" required>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Precio</label>
-            <div class="control">
-              <input class="input" type="number" placeholder="Precio del producto" id="productPrice" required>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label" for="productCategory">Categoría:</label>
-            <div class="control">
-              <div class="select">
-                <select id="productCategory" required>
-                  <option value="" disabled selected>Seleccioná la categoría</option>
-                </select>
+      <!-- Modal para ingresar los detalles del nuevo producto -->
+      <div class="modal" id="productModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Agregar nuevo producto</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <form id="productForm">
+              <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Nombre del producto" id="productName" required>
+                </div>
               </div>
-            </div>
-          </div>
-        </form>
+
+              <div class="field">
+                <label class="label">Descripción</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Descripción del producto" id="productDescription"
+                    required></textarea>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Imagen (URL)</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="URL de la imagen" id="productImage" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Precio</label>
+                <div class="control">
+                  <input class="input" type="number" placeholder="Precio del producto" id="productPrice" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label" for="productCategory">Categoría:</label>
+                <div class="control">
+                  <div class="select">
+                    <select id="productCategory" required>
+                      <option value="" disabled selected>Seleccioná la categoría</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success" id="saveProductButton">Guardar</button>
+            <button class="button">Cancelar</button>
+          </footer>
+        </div>
+      </div>
+
+      <!-- Lista de productos -->
+      <ul id="productList"></ul>
+
+      <section class="section">
+        <div class="fixed-grid has-1-cols-mobile has-3-cols-tablet has-4-cols-desktop">
+          <div class="grid is-gap-7" id="productos"></div>
+        </div>
       </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success" id="saveProductButton">Guardar</button>
-        <button class="button">Cancelar</button>
-      </footer>
-    </div>
-  </div>
 
-  <!-- Lista de productos -->
-  <ul id="productList"></ul>
-
-  <section class="section">
-    <div class="fixed-grid has-2-cols-mobile has-3-cols-tablet has-4-cols-desktop">
-      <div class="grid is-gap-7" id="productos"></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2 class="title">Carrito de Compras</h2>
-    <div class="box" id="carrito" ondragover="allowDrop(event)" ondrop="drop(event)">
-      <p>Arrastra los productos aquí</p>
-      <ul id="listaCarrito"></ul>
-    </div>
-  </section>
+      <section class="section">
+        <h2 class="title">Carrito de Compras</h2>
+        <div class="box" id="carrito" ondragover="allowDrop(event)" ondrop="drop(event)">
+          <p>Arrastra los productos aquí</p>
+          <ul id="listaCarrito"></ul>
+        </div>
+      </section>
   </div>
 </body>
 

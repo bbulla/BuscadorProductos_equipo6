@@ -1,3 +1,5 @@
+const title = document.getElementById("titulo");
+
 const searchInput = document.getElementById("searchInput");
 
 const cardsContainer = document.getElementById("productos");
@@ -291,4 +293,37 @@ document.addEventListener('DOMContentLoaded', () => {
     products.push(product);
     renderProducts(products);
   }
+});
+
+
+/* Title effects */
+
+// Confetti: https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js
+title.addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const rect = this.getBoundingClientRect();
+  
+  const x = (rect.left + rect.right) / 2 / window.innerWidth;
+  const y = (rect.top + rect.bottom) / 2 / window.innerHeight;
+  
+  confetti({
+    particleCount: 20,
+    spread: 200,
+    origin: { x: x, y: y }
+  });
+});
+
+title.addEventListener('mouseenter', function() {
+  this.style.cursor = 'pointer';
+});
+
+title.addEventListener('click', function() {
+  // Genera un color random de color claro
+  this.style.color = `hsl(${Math.random() * 360}, 100%, 80%)`;
+
+  const emojis = ['🚀', '🌈', '🦄', '🌟', '🎉', '🎈', '🎊', '🔥', '🎆', '💥'];
+  const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+  this.textContent = "Humildify"+randomEmoji;
+  
 });
