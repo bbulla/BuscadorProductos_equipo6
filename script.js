@@ -169,7 +169,7 @@ function renderProducts(products) {
 function renderCard(product) {
   return `
     <div class="cell product" draggable="true" data-product-id="${product.name}">
-      <div class="card">
+      <div class="card accent-shadow">
         <div class="card-image">
           <figure class="image is-4by3">
             <img src="${product.image}" alt="${product.name}" />
@@ -221,10 +221,10 @@ const categorias = ["Accessories", "Peripherals", "Audio", "Displays", "Storage"
 const productCategorySelect = document.getElementById("productCategory");
 
 categorias.forEach(categoria => {
-    const option = document.createElement("option");
-    option.value = categoria;
-    option.textContent = categoria;
-    productCategorySelect.appendChild(option);
+  const option = document.createElement("option");
+  option.value = categoria;
+  option.textContent = categoria;
+  productCategorySelect.appendChild(option);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -298,17 +298,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* Title effects */
+/* Titulo y afectos de acentos*/
 
 // Confetti: https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js
-title.addEventListener('click', function(e) {
+title.addEventListener('click', function (e) {
   e.preventDefault();
 
   const rect = this.getBoundingClientRect();
-  
+
   const x = (rect.left + rect.right) / 2 / window.innerWidth;
   const y = (rect.top + rect.bottom) / 2 / window.innerHeight;
-  
+
   confetti({
     particleCount: 20,
     spread: 200,
@@ -316,24 +316,29 @@ title.addEventListener('click', function(e) {
   });
 });
 
-title.addEventListener('mouseenter', function() {
+title.addEventListener('mouseenter', function () {
   this.style.cursor = 'pointer';
 });
 
-title.addEventListener('click', function() {
+title.addEventListener('click', function () {
   // Genera un color random de color claro
   webColor = `hsl(${Math.random() * 360}, 100%, 80%)`;
   setAccentColors(webColor)
 
-  const emojis = ['🚀', '🌈', '🦄', '🌟', '🎉', '🎈', '🎊', '🔥', '🎆', '💥'];
+  const emojis = ['🚀', '🌈', '🦄', '🌟', '🎉', '🎈', '🎊', '🔥', '💥', '🌲'];
+
   const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-  this.textContent = "Humildify"+randomEmoji;
-  
+  this.textContent = "Humildify" + randomEmoji;
+
 });
 
 function setAccentColors(color) {
   const elementsColor = Array.from(document.getElementsByClassName("accent-color"));
   const elementsBackground = Array.from(document.getElementsByClassName("accent-background"));
+  const elementsShadow = Array.from(document.getElementsByClassName("accent-shadow"));
+  const elementsOutline = Array.from(document.getElementsByClassName("accent-outline"));
+
+
   elementsColor.forEach(element => {
     element.style.color = color;
   });
@@ -342,7 +347,20 @@ function setAccentColors(color) {
     element.style.backgroundColor = color;
   });
 
+  elementsShadow.forEach(element => {
+    element.style.boxShadow = `0px 0px 20px -8px ${color}`;
+  });
 
+  elementsShadow.forEach(element => {
+    element.addEventListener('focus', () => {
+      element.style.borderColor = color;
+    });
+  
+    element.addEventListener('blur', () => {
+      element.style.borderColor = '';
+    });
+  });
 }
+
 
 

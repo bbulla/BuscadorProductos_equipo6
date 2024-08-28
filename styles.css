@@ -28,11 +28,17 @@ body {}
 
 .busqueda {
     width: 50vw;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.busqueda:focus {
+    outline: none;
+    border-color: #00D1B2;
 }
 
 
 #titulo {
-    color: #c6c7ff;
+    color: #00D1B2;
 }
 
 #titulo:hover {
@@ -45,7 +51,14 @@ body {}
     right: 20px;
     z-index: 1000;
     border-radius: 100%;
+    scale: 1.2;
 }
+
 .floating-button:hover {
-    scale: 1.05;
+    scale: 1.25;
 }
+
+.accent-shadow {
+    box-shadow: 0px 0px 20px -8px #00D1B2;
+}
+
