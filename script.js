@@ -205,9 +205,14 @@ function drop(event) {
   const productId = event.dataTransfer.getData("text");
   const product = products.find((p) => p.name === productId);
   if (product) {
-    const item = document.createElement("li");
-    item.textContent = product.name;
+    // const item = document.createElement("li");
+    // item.textContent = product.name;
+    // carrito.appendChild(item);
+    const item = document.createElement("div");
+    item.innerHTML = `<div class="box my-3 accent-color"><b>${product.name}</b></div>`
     carrito.appendChild(item);
+
+
   }
 }
 
