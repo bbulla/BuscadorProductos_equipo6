@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Productos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Catálogo de Productos</h1>
+
+      <!-- Filtros -->
+      <div class="field">
+        <label class="label">Filtrar por Categoría</label>
+        <div class="control">
+          <div class="select">
+            <select id="categoryFilter">
+              <option value="all">Todas</option>
+              <option value="accesorios">Accesorios</option>
+              <option value="perifericos">Periféricos</option>
+              <option value="audio">Audio</option>
+              <option value="pantallas">Pantallas</option>
+              <option value="almacenamiento">Almacenamiento</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ordenar -->
+      <div class="buttons">
+        <button id="sortButton" class="button is-primary">Ordenar por precio</button>
+      </div>
+
+      <!-- Botón para agregar un nuevo producto -->
+      <button id="addProductButton" class="button is-primary">Agregar Producto</button>
+
+      <!-- Contenedor de productos -->
+      <div id="productos" class="columns is-multiline mt-5"></div>
+
+      <!-- Carrito de compras -->
+      <div class="box mt-5">
+        <h2 class="title is-4">Carrito de Compras</h2>
+        <div id="carrito" class="box">
+          <p class="subtitle is-6">Arrastra los productos aquí</p>
+          <ul id="listaCarrito"></ul>
+        </div>
+        <button id="emptyCartButton" class="button is-danger">Vaciar Carrito</button>
+      </div>
+
+      <!-- Modal para detalles del producto -->
+      <div id="productDetailModal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Detalle del Producto</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <!-- Contenido del detalle del producto -->
+            <div class="content">
+              <figure class="image">
+                <img id="modal-image" src="" alt="">
+              </figure>
+              <h2 id="modal-name" class="title is-4"></h2>
+              <p id="modal-description"></p>
+              <p id="modal-price" class="subtitle is-5"></p>
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-primary">Agregar al carrito</button>
+          </footer>
+        </div>
+      </div>
+
+      <!-- Modal para crear/editar productos -->
+      <div id="productFormModal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Producto</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <form id="productForm">
+              <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                  <input class="input" id="productName" type="text" required />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Descripción</label>
+                <div class="control">
+                  <textarea class="textarea" id="productDescription" required></textarea>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Precio</label>
+                <div class="control">
+                  <input class="input" id="productPrice" type="number" step="0.01" required />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Imagen URL</label>
+                <div class="control">
+                  <input class="input" id="productImage" type="text" required />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Categoría</label>
+                <div class="control">
+                  <div class="select">
+                    <select id="productCategory" required>
+                      <option value="" disabled selected>Selecciona una categoría</option>
+                      <option value="accesorios">Accesorios</option>
+                      <option value="perifericos">Periféricos</option>
+                      <option value="audio">Audio</option>
+                      <option value="pantallas">Pantallas</option>
+                      <option value="almacenamiento">Almacenamiento</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </section>
+          <footer class="modal-card-foot">
+            <button id="saveProductButton" class="button is-success">Guardar</button>
+            <button id="cancelProductButton" class="button">Cancelar</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- script -->
+  <script src="script.js"></script>
+</body>
+</html>
